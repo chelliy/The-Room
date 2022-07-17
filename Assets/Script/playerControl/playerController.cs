@@ -7,6 +7,16 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     private PlayerControl playerControls;
 
+    public float moveSpeed;
+
+    public Transform orientation;
+
+    Vector3 moveDirection;
+
+    Rigidbody rb;
+
+
+
     private void Awake()
     {
         playerControls = new PlayerControl();
@@ -22,15 +32,26 @@ public class playerController : MonoBehaviour
     }
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(rb.velocity);
+    }
+
+    private void FixedUpdate()
+    {
+        MovePlayer();
+    }
+
+    void MovePlayer()
+    {
         Vector2 move = playerControls.land.move.ReadValue<Vector2>();
-        Vector3 moveDirection = new Vector3(move.x, 0, move.y);
-        this.transform.position += (moveDirection*Time.deltaTime);
-        Debug.Log(move);
+        moveDirection = orientation.forward * move.y + orientation.right*move.x;
+
+        transform.position += moveDirection * moveSpeed * Time.deltaTime;
     }
 }
