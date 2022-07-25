@@ -8,6 +8,9 @@ public class playerCam : MonoBehaviour
     public float sensY;
 
     public Transform orientation;
+    public Transform cameraPos;
+
+
 
     float xRotation;
     float yRotation;
@@ -31,5 +34,19 @@ public class playerCam : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        interactCheck();
+    }
+
+    private void interactCheck()
+    {
+
+        RaycastHit hit;
+
+        bool ifHit = Physics.Raycast(cameraPos.position, transform.forward, out hit);
+
+        if (ifHit)
+        {
+            Debug.Log(hit.transform.gameObject.tag);
+        }
     }
 }

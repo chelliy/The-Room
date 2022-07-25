@@ -58,11 +58,11 @@
   <ItemGroup>
     <Compile Include="Assets\Script\EventSystem.cs" />
     <Compile Include="Assets\AssetsBorrow\Clock\Scripts\Clock.cs" />
+    <Compile Include="Assets\Script\playerControl\playerCam.cs" />
+    <Compile Include="Assets\Script\cameraFllow.cs" />
     <Compile Include="Assets\Script\playerControl\playerController.cs" />
     <Compile Include="Assets\Script\timeReset.cs" />
     <Compile Include="Assets\Script\playerControl\playerControl.cs" />
-    <Compile Include="Assets\Script\playerControl\playerCam.cs" />
-    <Compile Include="Assets\Script\cameraFllow.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
