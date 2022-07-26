@@ -59,13 +59,13 @@
     <Compile Include="Assets\Script\EventSystem.cs" />
     <Compile Include="Assets\AssetsBorrow\Clock\Scripts\Clock.cs" />
     <Compile Include="Assets\Script\playerControl\playerCam.cs" />
+    <Compile Include="Assets\Script\InteractionRelated\InteractionPromptUI.cs" />
+    <Compile Include="Assets\Script\InteractionRelated\IInteraction.cs" />
     <Compile Include="Assets\Script\cameraFllow.cs" />
     <Compile Include="Assets\Script\playerControl\playerController.cs" />
     <Compile Include="Assets\Script\timeReset.cs" />
     <Compile Include="Assets\Script\playerControl\playerControl.cs" />
-    <Compile Include="Assets\Script\InteractionRelated\IInteraction.cs" />
     <Compile Include="Assets\Script\InteractionRelated\Inventory.cs" />
-    <Compile Include="Assets\Script\InteractionRelated\InteractionPromptUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
