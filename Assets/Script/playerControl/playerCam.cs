@@ -20,6 +20,7 @@ public class playerCam : MonoBehaviour
     private float interactionTime = 0;
 
     private bool UIDisplayed = false;
+    private bool dialogueDisplayed = false;
 
     float xRotation;
     float yRotation;
@@ -39,7 +40,7 @@ public class playerCam : MonoBehaviour
 
         yRotation += mouseX;
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        xRotation = Mathf.Clamp(xRotation, -60f, 60f);
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
@@ -52,10 +53,22 @@ public class playerCam : MonoBehaviour
 
         if (interactionTime > 0)
         {
+            if (UIDisplayed)
+            {
+                stopDisplayInteractionUI();
+            }
             interactionTime = interactionTime - Time.deltaTime;
         }
         else
         {
+            //hide dialogue UI
+            if (dialogueDisplayed)
+            {
+                dialogueDisplayed = false;
+                EventSystem.current.dialougeHideTrigger();
+            }
+
+            //check if player see an object
             RaycastHit hit;
 
             Ray ray = new Ray(cameraPos.position, transform.forward);
@@ -64,6 +77,7 @@ public class playerCam : MonoBehaviour
 
             if (ifHit)
             {
+                //check if player see an interactable object
                 GameObject currentObj = hit.transform.gameObject;
                 if (currentObj.CompareTag(interactableTag))
                 {
@@ -78,11 +92,14 @@ public class playerCam : MonoBehaviour
                     if (interactable != null && Keyboard.current.eKey.wasPressedThisFrame)
                     {
                         interactionTime = interactable.interaction(this);
+                        dialogueDisplayed = true;
+                        stopDisplayInteractionUI();
                     }
                 }
             }
             else
             {
+                //disable previous shown UI
                 if (UIDisplayed)
                 {
                     stopDisplayInteractionUI();

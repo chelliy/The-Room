@@ -7,6 +7,7 @@ public class EventSystem : MonoBehaviour
 {
     public static EventSystem current;
     public event Action timeReset;
+    public event Action dialougeHide;
     // Start is called before the first frame update
 
     private void Awake()
@@ -19,6 +20,13 @@ public class EventSystem : MonoBehaviour
         if (timeReset != null)
         {
             timeReset();
+        }
+    }
+    public void dialougeHideTrigger()
+    {
+        if (dialougeHide != null)
+        {
+            dialougeHide();
         }
     }
 }
