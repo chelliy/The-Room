@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class chair : MonoBehaviour, IInteraction
 {
 
-    [SerializeField]
-    private bool interactStatus;
-    public bool interactable => interactStatus;
 
     [SerializeField]
     private Text dialougueUIReference;
@@ -19,9 +16,15 @@ public class chair : MonoBehaviour, IInteraction
     private float dialogueDisplayTime;
     public float displayTime => dialogueDisplayTime;
 
-
+    public bool interactable { get; set ; }
 
     public string text;
+
+    void Start()
+    {
+        interactable = true;
+        EventSystem.current.dialougeHide += setDialogueInActive;
+    }
 
     public float interaction(playerCam player)
     {
@@ -37,10 +40,6 @@ public class chair : MonoBehaviour, IInteraction
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        EventSystem.current.dialougeHide += setDialogueInActive;
-    }
 
     // Update is called once per frame
     void Update()

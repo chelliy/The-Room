@@ -60,18 +60,19 @@
     <Compile Include="Assets\Script\Interactable Objects\bottles.cs" />
     <Compile Include="Assets\AssetsBorrow\Clock\Scripts\Clock.cs" />
     <Compile Include="Assets\Script\Interactable Objects\digitalClockControll.cs" />
+    <Compile Include="Assets\Script\Interactable Objects\mainDoor.cs" />
     <Compile Include="Assets\Script\playerControl\playerCam.cs" />
     <Compile Include="Assets\Script\Interactable Objects\chair.cs" />
     <Compile Include="Assets\Script\InteractionRelated\InteractionPromptUI.cs" />
     <Compile Include="Assets\Script\InteractionRelated\IInteraction.cs" />
     <Compile Include="Assets\Script\cameraFllow.cs" />
+    <Compile Include="Assets\Script\Interactable Objects\mainDoorAnimation.cs" />
     <Compile Include="Assets\Script\playerControl\playerController.cs" />
     <Compile Include="Assets\Script\Interactable Objects\timeReset.cs" />
     <Compile Include="Assets\Script\playerControl\playerControl.cs" />
     <Compile Include="Assets\Script\InteractionRelated\Inventory.cs" />
-    <Compile Include="Assets\Script\Interactable Objects\mainDoor.cs" />
-    <Compile Include="Assets\Script\Interactable Objects\mainDoorAnimation.cs" />
-    <Compile Include="Assets\mainDoorKey.cs" />
+    <Compile Include="Assets\updateDoorInteractableStatus.cs" />
+    <Compile Include="Assets\Script\Interactable Objects\mainDoorKey.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

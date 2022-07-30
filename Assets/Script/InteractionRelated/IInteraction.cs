@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public interface IInteraction
 {
-    public bool interactable { get; }
+    public bool interactable { get; set; }
     public Text dialogue { get; }
     public float displayTime { get; }
     public float interaction(playerCam player);

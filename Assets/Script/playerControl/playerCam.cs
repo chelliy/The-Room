@@ -11,7 +11,10 @@ public class playerCam : MonoBehaviour
 
     public Transform orientation;
     public Transform cameraPos;
+    public Transform cameraPosWhenSquat;
     public Transform InteractionUI;
+
+    public Transform currentCameraPos;
 
     public float interactionDistance = 2f;
 
@@ -25,12 +28,15 @@ public class playerCam : MonoBehaviour
     private RaycastHit previousHit;
     private bool preHit;
 
+    private bool squat = false;
+
 
     float xRotation;
     float yRotation;
     // Start is called before the first frame update
     void Start()
     {
+        currentCameraPos = cameraPos;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -48,6 +54,18 @@ public class playerCam : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        if(Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            if (squat)
+            {
+                currentCameraPos = cameraPos;
+            }
+            else
+            {
+                currentCameraPos = cameraPosWhenSquat;
+            }
+            squat = !squat;
+        }
         interactCheck();
     }
 
@@ -75,7 +93,7 @@ public class playerCam : MonoBehaviour
             //check if player see an object
             RaycastHit hit;
 
-            Ray ray = new Ray(cameraPos.position, transform.forward);
+            Ray ray = new Ray(currentCameraPos.position, transform.forward);
 
             bool ifHit = Physics.Raycast(ray, out hit, interactionDistance);
 
@@ -98,26 +116,29 @@ public class playerCam : MonoBehaviour
                     }
 
                     var interactable = currentObj.GetComponent<IInteraction>();
-                    
-                    //ui display
-                    if (!UIDisplayed)
+                    Debug.Log(interactable.interactable);
+                    if (interactable.interactable)
                     {
-                        displayInteractionUI(currentObj.GetComponent<MeshRenderer>().bounds.center);
-                    }
-                    else//checking for possible situation when multiple nteractable objects are close to each other
-                    {
-                        if (adjustPos)
+                        //ui display
+                        if (!UIDisplayed)
                         {
                             displayInteractionUI(currentObj.GetComponent<MeshRenderer>().bounds.center);
                         }
-                    }
+                        else//checking for possible situation when multiple nteractable objects are close to each other
+                        {
+                            if (adjustPos)
+                            {
+                                displayInteractionUI(currentObj.GetComponent<MeshRenderer>().bounds.center);
+                            }
+                        }
 
-                    //interact
-                    if (interactable != null && Keyboard.current.eKey.wasPressedThisFrame)
-                    {
-                        interactionTime = interactable.interaction(this);
-                        dialogueDisplayed = true;
-                        stopDisplayInteractionUI();
+                        //interact
+                        if (Keyboard.current.eKey.wasPressedThisFrame)
+                        {
+                            interactionTime = interactable.interaction(this);
+                            dialogueDisplayed = true;
+                            stopDisplayInteractionUI();
+                        }
                     }
                 }
                 else

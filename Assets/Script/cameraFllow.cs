@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class cameraFllow : MonoBehaviour
 {
-    public Transform cameraPosition;
+    public Transform mainCamera;
+
+    private playerCam cameraPosition;
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = cameraPosition.position;
+        cameraPosition = mainCamera.gameObject.GetComponent<playerCam>();
+        if (cameraPosition)
+        {
+            transform.position = cameraPosition.currentCameraPos.position;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = cameraPosition.position;
+        transform.position = cameraPosition.currentCameraPos.position;
     }
 }

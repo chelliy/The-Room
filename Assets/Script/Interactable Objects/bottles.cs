@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class bottles : MonoBehaviour,IInteraction
 {
     // Start is called before the first frame update
-    [SerializeField]
-    private bool interactStatus;
-    public bool interactable => interactStatus;
 
     [SerializeField]
     private Text dialougueUIReference;
@@ -19,9 +16,18 @@ public class bottles : MonoBehaviour,IInteraction
     private float dialogueDisplayTime;
     public float displayTime => dialogueDisplayTime;
 
-
+    [SerializeField]
+    private bool interactionStatus = true;
+    public bool interactable { get; set; }
 
     public string text;
+
+    void Start()
+    {
+        interactable = interactionStatus;
+        EventSystem.current.dialougeHide += setDialogueInActive;
+    }
+
 
     public float interaction(playerCam player)
     {
@@ -36,11 +42,6 @@ public class bottles : MonoBehaviour,IInteraction
         dialogue.gameObject.SetActive(false);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        EventSystem.current.dialougeHide += setDialogueInActive;
-    }
 
     // Update is called once per frame
     void Update()

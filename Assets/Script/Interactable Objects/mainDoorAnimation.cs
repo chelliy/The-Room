@@ -7,13 +7,14 @@ public class mainDoorAnimation : MonoBehaviour
 
     public Transform Door;
 
-    public Animator myDoor;
+    private Animator myDoor;
 
     private mainDoor mainDoor;
 
     void Start()
     {
-        mainDoor = Door.GetComponent<mainDoor>();
+        mainDoor = Door.gameObject.GetComponent<mainDoor>();
+        myDoor = Door.parent.gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -22,30 +23,17 @@ public class mainDoorAnimation : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (mainDoor)
-        {
-            if (other.CompareTag("player"))
-            {
-                if (!mainDoor.interactable)
-                {
-                    myDoor.Play("door open");
-                }
-            }
-        }
-    }
-
     private void OnTriggerExit(Collider other)
     {
 
-        if (mainDoor)
+        if (mainDoor != null)
         {
             if (other.CompareTag("player"))
             {
-                if (!mainDoor.interactable)
+                if (mainDoor.doorOpen)
                 {
                     myDoor.Play("door close");
+                    mainDoor.doorOpen = !mainDoor.doorOpen;
                 }
             }
         }

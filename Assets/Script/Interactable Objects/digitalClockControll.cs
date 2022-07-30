@@ -10,9 +10,6 @@ public class digitalClockControll : MonoBehaviour, IInteraction
     DateTime DateFetcher;
     public Text hour, minute;
 
-    [SerializeField] 
-    private bool interactStatus;
-    public bool interactable => interactStatus;
 
 
     [SerializeField]
@@ -23,6 +20,9 @@ public class digitalClockControll : MonoBehaviour, IInteraction
     private float dialogueDisplayTime;
     public float displayTime => dialogueDisplayTime;
 
+    [SerializeField]
+    private bool interactionStatus = true;
+    public bool interactable { get; set; }
 
     public string textWhenNoBattery;
 
@@ -31,6 +31,7 @@ public class digitalClockControll : MonoBehaviour, IInteraction
 
     void Start()
     {
+        interactable = interactionStatus;
         EventSystem.current.dialougeHide += setDialogueInActive;
     }
 
