@@ -1,28 +1,40 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    private bool key1 = false;
+    private bool mainDoor = false;
     
     private bool key2 = false;
 
-    public void setKey1ToTrue()
+    private bool battery = false;
+
+    public void setMainDoorKeyTrue()
     {
-        key1 = true;
+        mainDoor = true;
     }
     public void setKey2ToTrue()
     {
         key2 = true;
     }
-
-    public bool hasKey1()
+    public void setBattery()
     {
-        return key1;
+        battery = true;
+    }
+
+    public bool hasMainDoorKey()
+    {
+        return mainDoor;
     }
     public bool hasKey2()
     {
         return key2;
+    }
+
+    internal bool hasBattery()
+    {
+        return battery;
     }
 }

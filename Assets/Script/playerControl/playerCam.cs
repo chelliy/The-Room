@@ -22,6 +22,10 @@ public class playerCam : MonoBehaviour
     private bool UIDisplayed = false;
     private bool dialogueDisplayed = false;
 
+    private RaycastHit previousHit;
+    private bool preHit;
+
+
     float xRotation;
     float yRotation;
     // Start is called before the first frame update
@@ -81,11 +85,31 @@ public class playerCam : MonoBehaviour
                 GameObject currentObj = hit.transform.gameObject;
                 if (currentObj.CompareTag(interactableTag))
                 {
+                    bool adjustPos = false;
+                    //assign
+                    if(preHit == false)
+                    {
+                        preHit = true;
+                        previousHit = hit;
+                    }
+                    else
+                    {
+                        adjustPos = !previousHit.transform.gameObject.Equals(currentObj);
+                    }
+
                     var interactable = currentObj.GetComponent<IInteraction>();
+                    
                     //ui display
                     if (!UIDisplayed)
                     {
-                        displayInteractionUI(hit.point);
+                        displayInteractionUI(currentObj.GetComponent<MeshRenderer>().bounds.center);
+                    }
+                    else//checking for possible situation when multiple nteractable objects are close to each other
+                    {
+                        if (adjustPos)
+                        {
+                            displayInteractionUI(currentObj.GetComponent<MeshRenderer>().bounds.center);
+                        }
                     }
 
                     //interact
@@ -93,6 +117,13 @@ public class playerCam : MonoBehaviour
                     {
                         interactionTime = interactable.interaction(this);
                         dialogueDisplayed = true;
+                        stopDisplayInteractionUI();
+                    }
+                }
+                else
+                {
+                    if (UIDisplayed)
+                    {
                         stopDisplayInteractionUI();
                     }
                 }
