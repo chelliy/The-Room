@@ -3,7 +3,82 @@ guid: f24e7b6dac0cd92419f3e4a46c55ab8f
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Battery
+    second: {fileID: 2100000, guid: aef360a5138170846aaafb8b2b3ec116, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bottle
+    second: {fileID: 2100000, guid: 43f5b4fd682c22549b59fc227f31f44c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brick
+    second: {fileID: 2100000, guid: 5e55e8a9b7430ce4f85b263518cac3e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dark
+    second: {fileID: 2100000, guid: 91f0e255224098148b3a4d20a99b9209, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Darker Grey
+    second: {fileID: 2100000, guid: 4b387dfb22152b54fbd4ce792180a027, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: E-Clock
+    second: {fileID: 2100000, guid: 6e2642a824df9ee43b15da072f600c9d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: febdf55f756d0fa47a2f06980ee871dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grey
+    second: {fileID: 2100000, guid: 2c1422ae6700a9c4f89cc43a443959b2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Key
+    second: {fileID: 2100000, guid: 38abec62e9a1d0e4a890566188e7fa22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light Grey
+    second: {fileID: 2100000, guid: 7dafe885f5db2384daefa2b5540d6b85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Medium Grey
+    second: {fileID: 2100000, guid: b9aa468b1a1f0584f8e5d6a4b31fcb9e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Toilet
+    second: {fileID: 2100000, guid: dcc9a95ede4973d4cb70a34bd2e05be0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WaterPipe
+    second: {fileID: 2100000, guid: bcac0fd38bb624d4597efd2f57d38a54, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WaterPipe2
+    second: {fileID: 2100000, guid: 987afb9cf2e5d654e941519b0ccea42e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: 4c6615d56354b0d4db4c4c97ba037580, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
