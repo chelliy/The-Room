@@ -11,20 +11,6 @@ public class updateDoorInteractableStatus : MonoBehaviour
         mainDoor = this.GetComponentInChildren<mainDoor>();
     }
 
-    public void interactiableTrue()
-    {
-        if (mainDoor != null)
-        {
-            mainDoor.setInteractableToTrue();
-        }
-    }
-    public void interactiableFalse()
-    {
-        if (mainDoor != null)
-        {
-            mainDoor.setInteractableToFalse();
-        }
-    }
     // Update is called once per frame
     void Update()
     {

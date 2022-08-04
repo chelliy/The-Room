@@ -73,6 +73,8 @@
     <Compile Include="Assets\Script\Interactable Objects\timeReset.cs" />
     <Compile Include="Assets\Script\playerControl\playerControl.cs" />
     <Compile Include="Assets\Script\InteractionRelated\Inventory.cs" />
+    <Compile Include="Assets\mainToSideDetect.cs" />
+    <Compile Include="Assets\sideToMainDetect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

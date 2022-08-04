@@ -27,66 +27,54 @@ public class mainDoor : MonoBehaviour,IInteraction
 
     public Transform door;
 
-    private bool unlocked = false;
+    //after key
+    public bool unlocked = false;
 
+    //see if door open
     public bool doorOpen = false;
 
-    private Animator doorAnimation;
+    //door open animation control
+    public bool mainToSide = true;
+
+    //door close animation control
+    public bool openStatusMainToSide = true;
+
+    private Animator doorAnimator;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        doorAnimation = door.gameObject.GetComponent<Animator>();
         interactable = interactionStatus;
         EventSystem.current.dialougeHide += setDialogueInActive;
+        doorAnimator = door.GetComponent<Animator>();
     }
 
     public float interaction(playerCam player)
     {
-        if (unlocked)
+        var Inventory = player.gameObject.transform.parent.gameObject.GetComponent<Inventory>();
+        if (Inventory.hasMainDoorKey())
         {
-            if (doorOpen)
-            {
-                doorOpen = !doorOpen;
-                doorAnimation.Play("door close", 0, 0.0f);
-            }
-            else
-            {
-                doorOpen = !doorOpen;
-                doorAnimation.Play("door open", 0, 0.0f);
-            }
+            //special case, only a open door sound will be played
+            dialogue.gameObject.SetActive(false);
+            interactable = false;
+            timePause(delayTimeForOpeningDoor);
+            unlocked = true;
+            doorOpen = true;
+            doorAnimator.Play("door open");
+
             return 0;
         }
-        else { 
-            var Inventory = player.gameObject.transform.parent.gameObject.GetComponent<Inventory>();
-            if (Inventory.hasMainDoorKey())
-            {
-                //special case, only a open door sound will be played
-                unlocked = true;
-                dialogue.gameObject.SetActive(false);
-                return delayTimeForOpeningDoor;
-            }
-            else
-            {
-                dialogue.text = textWhenWithoutKey;
+        else
+        {
+            dialogue.text = textWhenWithoutKey;
 
-                dialogue.gameObject.SetActive(true);
-                return displayTime;
-            }
+            dialogue.gameObject.SetActive(true);
+            return displayTime;
         }
-    }
 
-
-    public void setInteractableToTrue()
-    {
-        interactable = true;
     }
-    public void setInteractableToFalse()
-    {
-        interactable = false;
-    }
-
 
     public void setDialogueInActive()
     {
@@ -97,6 +85,19 @@ public class mainDoor : MonoBehaviour,IInteraction
     void Update()
     {
 
+    }
+
+    private bool timePause(float delayTime)
+    {
+        var newTime = delayTime - Time.deltaTime;
+        if(newTime > 0)
+        {
+            return timePause(newTime);
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }

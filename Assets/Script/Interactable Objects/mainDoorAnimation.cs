@@ -26,16 +26,41 @@ public class mainDoorAnimation : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
 
-        if (mainDoor != null)
+        Debug.Log(2);
+        if (mainDoor != null && other.CompareTag("player") && mainDoor.unlocked && mainDoor.doorOpen)
         {
-            if (other.CompareTag("player"))
+            if (mainDoor.openStatusMainToSide)
             {
-                if (mainDoor.doorOpen)
-                {
-                    myDoor.Play("door close");
-                    mainDoor.doorOpen = !mainDoor.doorOpen;
-                }
+                myDoor.Play("door close");
+                mainDoor.doorOpen = !mainDoor.doorOpen;
+            }
+            else
+            {
+                myDoor.Play("door close from side room");
+                mainDoor.doorOpen = !mainDoor.doorOpen;
             }
         }
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(1);
+        if (mainDoor != null && other.CompareTag("player") && mainDoor.unlocked && !mainDoor.doorOpen)
+        {
+            if (mainDoor.mainToSide)
+            {
+                myDoor.Play("door open");
+                mainDoor.openStatusMainToSide = true;
+                mainDoor.doorOpen = !mainDoor.doorOpen;
+            }
+            else
+            {
+                myDoor.Play("door open from side room");
+                mainDoor.openStatusMainToSide = false;
+                mainDoor.doorOpen = !mainDoor.doorOpen;
+            }
+        }
+    }
+            
 }
