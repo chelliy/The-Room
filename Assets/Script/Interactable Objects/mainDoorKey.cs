@@ -28,6 +28,7 @@ public class mainDoorKey : MonoBehaviour,IInteraction
         dialogue.text = text;
         dialogue.gameObject.SetActive(true);
         interactable = false;
+        this.gameObject.SetActive(false);
         return displayTime;
     }
 
