@@ -58,8 +58,8 @@ public class mainDoor : MonoBehaviour,IInteraction
         {
             //special case, only a open door sound will be played
             dialogue.gameObject.SetActive(false);
-            interactable = false;
-            timePause(delayTimeForOpeningDoor);
+            interactable = false; 
+            new WaitForSeconds(delayTimeForOpeningDoor);
             unlocked = true;
             doorOpen = true;
             doorAnimator.Play("door open");
