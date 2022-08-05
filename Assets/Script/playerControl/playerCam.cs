@@ -30,43 +30,46 @@ public class playerCam : MonoBehaviour
 
     private bool squat = false;
 
-
     float xRotation;
     float yRotation;
+
+    public bool settingClock = false;
     // Start is called before the first frame update
     void Start()
     {
         currentCameraPos = cameraPos;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //cursorLock();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //get mouse input
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
-
-        yRotation += mouseX;
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -60f, 60f);
-
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-        if(Input.GetKeyDown(KeyCode.LeftControl))
+        if (!settingClock)
         {
-            if (squat)
+            //get mouse input
+            float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+
+            yRotation += mouseX;
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -60f, 60f);
+
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+            if (Input.GetKeyDown(KeyCode.LeftControl))
             {
-                currentCameraPos = cameraPos;
+                if (squat)
+                {
+                    currentCameraPos = cameraPos;
+                }
+                else
+                {
+                    currentCameraPos = cameraPosWhenSquat;
+                }
+                squat = !squat;
             }
-            else
-            {
-                currentCameraPos = cameraPosWhenSquat;
-            }
-            squat = !squat;
+            interactCheck();
         }
-        interactCheck();
     }
 
     private void interactCheck()
@@ -171,5 +174,16 @@ public class playerCam : MonoBehaviour
         UIDisplayed = true;
         InteractionUI.position = point;
         InteractionUI.gameObject.SetActive(true);
+    }
+
+    public void cursorLock()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+    public void cursorUnlock()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 }
