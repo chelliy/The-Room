@@ -11,6 +11,8 @@ public class playerController : MonoBehaviour
 
     public Transform orientation;
 
+    private bool canMove = true;
+
     Vector3 moveDirection;
 
     Rigidbody rb;
@@ -32,6 +34,8 @@ public class playerController : MonoBehaviour
     }
     void Start()
     {
+        EventSystem.current.clockSettingStart += stopMoving;
+        EventSystem.current.clockSettingStop += startMoving;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
     }
@@ -43,7 +47,10 @@ public class playerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (canMove)
+        {
+            MovePlayer();
+        }
     }
 
     void MovePlayer()
@@ -52,5 +59,14 @@ public class playerController : MonoBehaviour
         moveDirection = orientation.forward * move.y + orientation.right*move.x;
 
         transform.position += moveDirection * moveSpeed * Time.deltaTime;
+    }
+
+    void stopMoving()
+    {
+        canMove = false;
+    }
+    void startMoving()
+    {
+        canMove = true;
     }
 }

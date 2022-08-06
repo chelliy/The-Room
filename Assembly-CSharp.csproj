@@ -61,8 +61,9 @@
     <Compile Include="Assets\Script\Interactable Objects\upperDrawer.cs" />
     <Compile Include="Assets\Script\Interactable Objects\sideToMainDetect.cs" />
     <Compile Include="Assets\Script\Interactable Objects\mainDoorKey.cs" />
+    <Compile Include="Assets\Script\Interactable Objects\digitControl.cs" />
     <Compile Include="Assets\AssetsBorrow\Clock\Scripts\Clock.cs" />
-    <Compile Include="Assets\LowerDrawer.cs" />
+    <Compile Include="Assets\Script\Interactable Objects\LowerDrawer.cs" />
     <Compile Include="Assets\Script\Interactable Objects\digitalClockControll.cs" />
     <Compile Include="Assets\Script\Interactable Objects\mainDoor.cs" />
     <Compile Include="Assets\Script\playerControl\playerCam.cs" />
@@ -76,8 +77,13 @@
     <Compile Include="Assets\Script\Interactable Objects\timeReset.cs" />
     <Compile Include="Assets\Script\playerControl\playerControl.cs" />
     <Compile Include="Assets\Script\InteractionRelated\Inventory.cs" />
+    <Compile Include="Assets\Script\introControl.cs" />
     <Compile Include="Assets\Script\sceneSwitch.cs" />
-    <Compile Include="Assets\digitControl.cs" />
+    <Compile Include="Assets\Script\Interactable Objects\battery.cs" />
+    <Compile Include="Assets\Script\Interactable Objects\screwdriver.cs" />
+    <Compile Include="Assets\letterControl.cs" />
+    <Compile Include="Assets\otherLetterControl.cs" />
+    <Compile Include="Assets\safe.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

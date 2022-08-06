@@ -19,6 +19,7 @@ public class mainToSideDetect : MonoBehaviour
         if (collision.body.gameObject.CompareTag("player"))
         {
             mainDoor.mainToSide = true;
+            Debug.Log("true");
         }
     }
 }

@@ -25,8 +25,6 @@ public class mainDoorAnimation : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-
-        Debug.Log(2);
         if (mainDoor != null && other.CompareTag("player") && mainDoor.unlocked && mainDoor.doorOpen)
         {
             if (mainDoor.openStatusMainToSide)
@@ -45,7 +43,6 @@ public class mainDoorAnimation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(1);
         if (mainDoor != null && other.CompareTag("player") && mainDoor.unlocked && !mainDoor.doorOpen)
         {
             if (mainDoor.mainToSide)

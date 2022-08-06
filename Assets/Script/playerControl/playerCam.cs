@@ -29,16 +29,18 @@ public class playerCam : MonoBehaviour
     private bool preHit;
 
     private bool squat = false;
+    private bool isCursorLocked = false;
 
     float xRotation;
     float yRotation;
 
     public bool settingClock = false;
+
     // Start is called before the first frame update
     void Start()
     {
         currentCameraPos = cameraPos;
-        //cursorLock();
+        EventSystem.current.clockSettingStop += clockSettingSetTofalse;
     }
 
     // Update is called once per frame
@@ -46,6 +48,10 @@ public class playerCam : MonoBehaviour
     {
         if (!settingClock)
         {
+            if (!isCursorLocked)
+            {
+                cursorLock();
+            }
             //get mouse input
             float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
             float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
@@ -70,12 +76,17 @@ public class playerCam : MonoBehaviour
             }
             interactCheck();
         }
+        else
+        {
+            if (isCursorLocked)
+            {
+                cursorUnlock();
+            }
+        }
     }
 
     private void interactCheck()
     {
-
-
         if (interactionTime > 0)
         {
             if (UIDisplayed)
@@ -106,34 +117,35 @@ public class playerCam : MonoBehaviour
                 GameObject currentObj = hit.transform.gameObject;
                 if (currentObj.CompareTag(interactableTag))
                 {
-                    bool adjustPos = false;
-                    //assign
-                    if(preHit == false)
-                    {
-                        preHit = true;
-                        previousHit = hit;
-                    }
-                    else
-                    {
-                        adjustPos = !previousHit.transform.gameObject.Equals(currentObj);
-                    }
+                    //bool adjustPos = false;
+                    ////assign
+                    //if(preHit == false)
+                    //{
+                    //    preHit = true;
+                    //    previousHit = hit;
+                    //}
+                    //else
+                    //{
+                    //    adjustPos = !previousHit.transform.gameObject.Equals(currentObj);
+                    //}
 
                     var interactable = currentObj.GetComponent<IInteraction>();
-                    Debug.Log(interactable.interactable);
+                    Debug.Log(currentObj.name);
                     if (interactable.interactable)
                     {
+                        displayInteractionUI(currentObj.GetComponent<MeshRenderer>().bounds.center);
                         //ui display
-                        if (!UIDisplayed)
-                        {
-                            displayInteractionUI(currentObj.GetComponent<MeshRenderer>().bounds.center);
-                        }
-                        else//checking for possible situation when multiple nteractable objects are close to each other
-                        {
-                            if (adjustPos)
-                            {
-                                displayInteractionUI(currentObj.GetComponent<MeshRenderer>().bounds.center);
-                            }
-                        }
+                        //if (!UIDisplayed)
+                        //{
+                        //    displayInteractionUI(currentObj.GetComponent<MeshRenderer>().bounds.center);
+                        //}
+                        //else//checking for possible situation when multiple nteractable objects are close to each other
+                        //{
+                        //    if (adjustPos)
+                        //    {
+                        //        displayInteractionUI(currentObj.GetComponent<MeshRenderer>().bounds.center);
+                        //    }
+                        //}
 
                         //interact
                         if (Keyboard.current.eKey.wasPressedThisFrame)
@@ -178,12 +190,20 @@ public class playerCam : MonoBehaviour
 
     public void cursorLock()
     {
+        isCursorLocked = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
     public void cursorUnlock()
     {
+        isCursorLocked = false;
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
+    }
+
+    public void clockSettingSetTofalse()
+    {
+        settingClock = false;
+        cursorLock();
     }
 }

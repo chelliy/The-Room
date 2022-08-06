@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using TMPro;
 
 public class digitalClockControll : MonoBehaviour, IInteraction
 {
     // Start is called before the first frame update
     DateTime DateFetcher;
     public Text hour, minute;
+
+    public TextMeshProUGUI UIhourTenth, UIhourSingal, UIminuteTenth, UIminuteSingal;
 
 
 
@@ -24,10 +27,24 @@ public class digitalClockControll : MonoBehaviour, IInteraction
     private bool interactionStatus = true;
     public bool interactable { get; set; }
 
-    public string textWhenNoBattery;
+    public string textWhenNoBatteryNoScrewdriver;
 
-    public string textWhenHasBattery;
+    public string textWhenNoBatteryHasScrewdriver;
 
+    public string textWhenHasBatteryNoScrewdriver;
+
+    public string textWhenHasBatteryHasScrewdriver;
+
+    public bool isClockWorkig = false;
+
+    public Transform clockSettingUI;
+
+
+    private float currentHour = 0f;
+    private float currentMinute = 0f;
+
+    public float targetHour;
+    public float targetMinute;
 
     void Start()
     {
@@ -44,21 +61,54 @@ public class digitalClockControll : MonoBehaviour, IInteraction
 
     public float interaction(playerCam player)
     {
-        var Inventory = player.gameObject.transform.parent.gameObject.GetComponent<Inventory>();
-        if (Inventory.hasBattery())
+        if (!isClockWorkig)
         {
-            dialogue.text = textWhenHasBattery;
+            var Inventory = player.gameObject.transform.parent.gameObject.GetComponent<Inventory>();
+            if (Inventory.hasBattery()&&Inventory.hasScrewdriver())
+            {
+                dialogue.text = textWhenHasBatteryHasScrewdriver;
+                isClockWorkig = !isClockWorkig;
+            }
+            else if(Inventory.hasBattery())
+            {
+                dialogue.text = textWhenHasBatteryNoScrewdriver;
+            }else if (Inventory.hasScrewdriver())
+            {
+                dialogue.text = textWhenNoBatteryHasScrewdriver;
+            }
+            else
+            {
+                dialogue.text = textWhenNoBatteryNoScrewdriver;
+            }
+            dialogue.gameObject.SetActive(true);
+            return displayTime;
         }
         else
         {
-            dialogue.text = textWhenNoBattery;
+            player.settingClock = true;
+            clockSettingUI.gameObject.SetActive(true);
+            EventSystem.current.clockSettingStartTrigger();
+            return -1;
         }
-        dialogue.gameObject.SetActive(true);
-        return displayTime;
     }
 
     public void setDialogueInActive()
     {
         dialogue.gameObject.SetActive(false);
+    }
+
+
+    public void clockSetComplete()
+    {
+        currentHour = int.Parse(UIhourTenth.text)*10 + int.Parse(UIhourSingal.text);
+        currentMinute = int.Parse(UIminuteTenth.text) * 10 + int.Parse(UIminuteSingal.text); ;
+        clockSettingUI.gameObject.SetActive(false);
+        this.hour.text = currentHour.ToString();
+        this.minute.text = currentMinute.ToString();
+
+        EventSystem.current.clockSettingStopTrigger();
+        Debug.Log(currentHour);
+        Debug.Log(currentMinute);
+        
     }
 }

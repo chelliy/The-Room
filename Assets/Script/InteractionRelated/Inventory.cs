@@ -7,9 +7,11 @@ public class Inventory : MonoBehaviour
 {
     private bool mainDoor = false;
     
-    private bool key2 = false;
+    private bool safeKey = false;
 
     private bool battery = false;
+
+    private bool screwdriver = false;
 
     public void setMainDoorKeyTrue()
     {
@@ -17,24 +19,32 @@ public class Inventory : MonoBehaviour
     }
     public void setKey2ToTrue()
     {
-        key2 = true;
+        safeKey = true;
     }
     public void setBattery()
     {
         battery = true;
+    }
+    public void setScrewdriver()
+    {
+        screwdriver = true;
     }
 
     public bool hasMainDoorKey()
     {
         return mainDoor;
     }
-    public bool hasKey2()
+    public bool hasSafeKey()
     {
-        return key2;
+        return safeKey;
     }
 
-    internal bool hasBattery()
+    public bool hasBattery()
     {
         return battery;
+    }
+    public bool hasScrewdriver()
+    {
+        return screwdriver;
     }
 }

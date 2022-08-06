@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class sceneSwitch : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Transform intro;
+    public Transform startMenu;
     void Start()
     {
         
@@ -13,13 +15,16 @@ public class sceneSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            SceneManager.LoadScene("SampleScene");
-        }
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            SceneManager.LoadScene("testing");
-        }
+
+    }
+
+    public void loadMainScene()
+    {
+        intro.gameObject.SetActive(true);
+        startMenu.gameObject.SetActive(false);
+    }
+    public void quitGame()
+    {
+        Application.Quit();
     }
 }
