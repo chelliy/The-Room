@@ -24,12 +24,12 @@ public class playerCam : MonoBehaviour
 
     public string interactableTag = "interactable";
 
-    private float interactionTime = 0;
+    public float interactionTime = 0;
 
     private bool UIDisplayed = false;
     private bool dialogueDisplayed = false;
 
-    private RaycastHit previousHit;
+    private Light previousHitLightSource;
     private bool preHit;
 
     private bool squat = false;
@@ -131,9 +131,9 @@ public class playerCam : MonoBehaviour
     {
         if (interactionTime > 0)
         {
-            if (UIDisplayed)
+            if (preHit)
             {
-                stopDisplayInteractionUI();
+                turnLightOff();
             }
             interactionTime = interactionTime - Time.deltaTime;
         }
@@ -157,6 +157,7 @@ public class playerCam : MonoBehaviour
             {
                 //check if player see an interactable object
                 GameObject currentObj = hit.transform.gameObject;
+                var currentLightSource = currentObj.GetComponentInChildren<Light>();
                 if (currentObj.CompareTag(interactableTag))
                 {
                     //bool adjustPos = false;
@@ -171,17 +172,33 @@ public class playerCam : MonoBehaviour
                     //    adjustPos = !previousHit.transform.gameObject.Equals(currentObj);
                     //}
 
+                    if (!preHit)
+                    {
+                        preHit = true;
+                        previousHitLightSource = currentObj.GetComponentInChildren<Light>();
+                    }
+                    else
+                    {
+                        if (!previousHitLightSource.Equals(currentLightSource))
+                        {
+                            turnLightOff();
+                            previousHitLightSource = currentLightSource;
+                        }
+                    }
+
                     var interactable = currentObj.GetComponent<IInteraction>();
                     Debug.Log(currentObj.name);
                     if (interactable.interactable)
                     {
-                        if (currentObj.GetComponent<MeshRenderer>())
-                        {
-                            displayInteractionUI(currentObj.GetComponent<MeshRenderer>().bounds.center);
-                        }else if (currentObj.GetComponent<SpriteRenderer>())
-                        {
-                            displayInteractionUI(currentObj.GetComponent<SpriteRenderer>().bounds.center);
-                        }
+                        currentObj.GetComponentInChildren<Light>().enabled = true;
+                        //if (currentObj.GetComponent<MeshRenderer>())
+                        //{
+                        //    displayInteractionUI(currentObj.GetComponent<MeshRenderer>().bounds.center);
+                        //}else if (currentObj.GetComponent<SpriteRenderer>())
+                        //{
+                        //    displayInteractionUI(currentObj.GetComponent<SpriteRenderer>().bounds.center);
+                        //}
+
                         //ui display
                         //if (!UIDisplayed)
                         //{
@@ -200,7 +217,7 @@ public class playerCam : MonoBehaviour
                         {
                             interactionTime = interactable.interaction(this);
                             dialogueDisplayed = true;
-                            stopDisplayInteractionUI();
+                            //stopDisplayInteractionUI();
                         }
                     }
                 }
@@ -208,7 +225,11 @@ public class playerCam : MonoBehaviour
                 {
                     if (UIDisplayed)
                     {
-                        stopDisplayInteractionUI();
+                        //stopDisplayInteractionUI();
+                    }
+                    if (preHit)
+                    {
+                        turnLightOff();
                     }
                 }
             }
@@ -217,7 +238,12 @@ public class playerCam : MonoBehaviour
                 //disable previous shown UI
                 if (UIDisplayed)
                 {
-                    stopDisplayInteractionUI();
+                    //stopDisplayInteractionUI();
+                }
+
+                if (preHit)
+                {
+                    turnLightOff();
                 }
             }
         }
@@ -253,5 +279,11 @@ public class playerCam : MonoBehaviour
     {
         specialInteracting = false;
         cursorLock();
+    }
+
+    private void turnLightOff()
+    {
+        var temp = previousHitLightSource.transform.gameObject;
+        temp.GetComponent<Light>().enabled = false;
     }
 }

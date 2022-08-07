@@ -26,6 +26,7 @@ public class lightControl : MonoBehaviour, IInteraction
 
     public bool isLightOn = true;
 
+    public float[] lightRecord;
 
 
     // Start is called before the first frame update
@@ -33,6 +34,11 @@ public class lightControl : MonoBehaviour, IInteraction
     {
         interactable = interactionStatus;
         EventSystem.current.dialougeHide += setDialogueInActive;
+        lightRecord = new float[lights.Length];
+        for(int i = 0; i<lights.Length; i++)
+        {
+            lightRecord[i] = lights[i].GetComponent<Light>().intensity;
+        }
     }
 
     public float interaction(playerCam player)
@@ -67,12 +73,12 @@ public class lightControl : MonoBehaviour, IInteraction
     private void changingLight()
     {
         isLightOn = !isLightOn;
-        foreach (Transform current in lights)
+        for (int i = 0; i < lights.Length; i++)
         {
-            var currentLight = current.GetComponent<Light>();
+            var currentLight = lights[i].GetComponent<Light>();
             if(currentLight.intensity == 0.5f)
             {
-                currentLight.intensity = 5;
+                currentLight.intensity = lightRecord[i];
             }
             else
             {

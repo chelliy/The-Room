@@ -61,16 +61,19 @@
     <Compile Include="Assets\Script\Interactable Objects\bottles.cs" />
     <Compile Include="Assets\Script\Interactable Objects\upperDrawer.cs" />
     <Compile Include="Assets\Script\Interactable Objects\safeKey.cs" />
+    <Compile Include="Assets\finalBackgroundMusic.cs" />
     <Compile Include="Assets\Script\Interactable Objects\battery.cs" />
     <Compile Include="Assets\bathToSide.cs" />
     <Compile Include="Assets\Script\Interactable Objects\diary.cs" />
+    <Compile Include="Assets\sideDoorAnimation.cs" />
+    <Compile Include="Assets\finalLetter.cs" />
     <Compile Include="Assets\Script\Interactable Objects\lightControl.cs" />
     <Compile Include="Assets\Script\Interactable Objects\sideToMainDetect.cs" />
     <Compile Include="Assets\Script\Interactable Objects\mainSideConnectedDoor.cs" />
     <Compile Include="Assets\Script\Interactable Objects\mainDoorKey.cs" />
     <Compile Include="Assets\Script\Interactable Objects\digitControl.cs" />
     <Compile Include="Assets\JamesNote.cs" />
-    <Compile Include="Assets\AssetsBorrow\Clock\Scripts\Clock.cs" />
+    <Compile Include="Assets\finalLetterControl.cs" />
     <Compile Include="Assets\doctorNote.cs" />
     <Compile Include="Assets\Script\Interactable Objects\LowerDrawer.cs" />
     <Compile Include="Assets\Script\Interactable Objects\digitalClockControll.cs" />
@@ -93,10 +96,9 @@
     <Compile Include="Assets\Script\InteractionRelated\Inventory.cs" />
     <Compile Include="Assets\Script\introControl.cs" />
     <Compile Include="Assets\Script\sceneSwitch.cs" />
-    <Compile Include="Assets\sideDoorAnimation.cs" />
-    <Compile Include="Assets\finalBackgroundMusic.cs" />
-    <Compile Include="Assets\finalLetter.cs" />
-    <Compile Include="Assets\finalLetterControl.cs" />
+    <Compile Include="Assets\endTrigger.cs" />
+    <Compile Include="Assets\frame.cs" />
+    <Compile Include="Assets\finalDialouge.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -5,6 +5,7 @@ using UnityEngine;
 public class finalLetterControl : MonoBehaviour
 {
     public float delayTime = 0.3f;
+    public Transform finalDialouge;
 
     void Awake()
     {
@@ -24,6 +25,7 @@ public class finalLetterControl : MonoBehaviour
                 EventSystem.current.diaryStopTrigger();
                 delayTime = 0.3f;
                 this.gameObject.SetActive(false);
+                finalDialouge.GetComponent<finalDialouge>().starting();
             }
         }
     }

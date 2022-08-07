@@ -16,7 +16,8 @@ public class diary : MonoBehaviour, IInteraction
 
     public bool interactable { get; set; }
 
-    public string text;
+    public string textWhenIsOutOfSafe;
+    public string textWhenInSafe;
 
     public bool isOpenForLetters = false;
 
@@ -27,6 +28,8 @@ public class diary : MonoBehaviour, IInteraction
     public AudioClip background;
 
     private float playtime = 0;
+
+    private bool firstTime = true;
 
     public float interaction(playerCam player)
     {
@@ -44,11 +47,21 @@ public class diary : MonoBehaviour, IInteraction
         }
         else
         {
-            dialogue.text = text;
-            dialogue.gameObject.SetActive(true);
-            isOpenForLetters = true;
-            this.gameObject.transform.position = newPos.position;
-            return displayTime;
+            if (firstTime)
+            {
+                dialogue.text = textWhenInSafe;
+                dialogue.gameObject.SetActive(true);
+                this.gameObject.transform.position = newPos.position;
+                firstTime = false;
+                return displayTime;
+            }
+            else
+            {
+                dialogue.text = textWhenIsOutOfSafe;
+                dialogue.gameObject.SetActive(true);
+                isOpenForLetters = true;
+                return displayTime;
+            }
         }
     }
 
