@@ -9,11 +9,11 @@ public class mainDoorAnimation : MonoBehaviour
 
     private Animator myDoor;
 
-    private mainDoor mainDoor;
+    private mainSideConnectedDoor mainDoor;
 
     void Start()
     {
-        mainDoor = Door.gameObject.GetComponent<mainDoor>();
+        mainDoor = Door.gameObject.GetComponent<mainSideConnectedDoor>();
         myDoor = Door.parent.gameObject.GetComponent<Animator>();
     }
 

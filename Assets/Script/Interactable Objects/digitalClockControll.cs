@@ -13,6 +13,9 @@ public class digitalClockControll : MonoBehaviour, IInteraction
 
     public TextMeshProUGUI UIhourTenth, UIhourSingal, UIminuteTenth, UIminuteSingal;
 
+    public Transform finalSceneSystem;
+    private finalManagement final;
+
 
 
     [SerializeField]
@@ -43,11 +46,12 @@ public class digitalClockControll : MonoBehaviour, IInteraction
     private float currentHour = 0f;
     private float currentMinute = 0f;
 
-    public float targetHour;
-    public float targetMinute;
+    public float targetHour = 10f;
+    public float targetMinute = 30f;
 
     void Start()
     {
+        final = finalSceneSystem.gameObject.GetComponent<finalManagement>();
         interactable = interactionStatus;
         EventSystem.current.dialougeHide += setDialogueInActive;
     }
@@ -68,6 +72,7 @@ public class digitalClockControll : MonoBehaviour, IInteraction
             {
                 dialogue.text = textWhenHasBatteryHasScrewdriver;
                 isClockWorkig = !isClockWorkig;
+                hour.transform.parent.gameObject.SetActive(true);
             }
             else if(Inventory.hasBattery())
             {
@@ -85,7 +90,8 @@ public class digitalClockControll : MonoBehaviour, IInteraction
         }
         else
         {
-            player.settingClock = true;
+            player.specialInteracting = true;
+            player.needUnlock = true;
             clockSettingUI.gameObject.SetActive(true);
             EventSystem.current.clockSettingStartTrigger();
             return -1;
@@ -105,10 +111,14 @@ public class digitalClockControll : MonoBehaviour, IInteraction
         clockSettingUI.gameObject.SetActive(false);
         this.hour.text = currentHour.ToString();
         this.minute.text = currentMinute.ToString();
-
-        EventSystem.current.clockSettingStopTrigger();
         Debug.Log(currentHour);
         Debug.Log(currentMinute);
+
+        if(currentHour == targetHour && currentMinute == targetMinute)
+        {
+            final.timeIsCorrect();
+        }
+        EventSystem.current.clockSettingStopTrigger();
         
     }
 }

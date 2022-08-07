@@ -36,6 +36,8 @@ public class playerController : MonoBehaviour
     {
         EventSystem.current.clockSettingStart += stopMoving;
         EventSystem.current.clockSettingStop += startMoving;
+        EventSystem.current.diaryStart += stopMoving;
+        EventSystem.current.diaryStop += startMoving;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
     }

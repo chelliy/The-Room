@@ -13,11 +13,18 @@ public class Inventory : MonoBehaviour
 
     private bool screwdriver = false;
 
+    private bool flashLight = false;
+
     public void setMainDoorKeyTrue()
     {
         mainDoor = true;
     }
-    public void setKey2ToTrue()
+
+    public void setFlashLightTrue()
+    {
+        flashLight = true;
+    }
+    public void setSafeKeyToTrue()
     {
         safeKey = true;
     }
@@ -46,5 +53,9 @@ public class Inventory : MonoBehaviour
     public bool hasScrewdriver()
     {
         return screwdriver;
+    }
+    public bool hasFlashLight()
+    {
+        return flashLight;
     }
 }

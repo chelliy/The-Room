@@ -9,6 +9,10 @@ public class playerCam : MonoBehaviour
     public float sensX;
     public float sensY;
 
+    public Transform flashLight;
+    private Light lightSourceFL;
+    public float FLIntensity;
+
     public Transform orientation;
     public Transform cameraPos;
     public Transform cameraPosWhenSquat;
@@ -34,19 +38,36 @@ public class playerCam : MonoBehaviour
     float xRotation;
     float yRotation;
 
-    public bool settingClock = false;
+    public bool specialInteracting = false;
+
+    public bool needUnlock = true;
+
+    private bool isFLOn = false;
+    private bool hasFL = false;
+
+    private Inventory playerInventory;
 
     // Start is called before the first frame update
     void Start()
     {
         currentCameraPos = cameraPos;
-        EventSystem.current.clockSettingStop += clockSettingSetTofalse;
+        EventSystem.current.clockSettingStop += specialInteractingToFalse;
+        EventSystem.current.diaryStop += specialInteractingToFalse;
+        playerInventory = this.transform.parent.gameObject.GetComponent<Inventory>();
+        lightSourceFL = flashLight.gameObject.GetComponent<Light>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!settingClock)
+        if (!hasFL)
+        {
+            if (playerInventory.hasFlashLight())
+            {
+                hasFL = true;
+            }
+        }
+        if (!specialInteracting)
         {
             if (!isCursorLocked)
             {
@@ -59,9 +80,12 @@ public class playerCam : MonoBehaviour
             yRotation += mouseX;
             xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, -60f, 60f);
-
+            //camera
             transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
             orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+            //FL
+            flashLight.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
                 if (squat)
@@ -74,11 +98,29 @@ public class playerCam : MonoBehaviour
                 }
                 squat = !squat;
             }
+            flashLight.position= currentCameraPos.position;
+
+            if (hasFL)
+            {
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    if (isFLOn)
+                    {
+                        lightSourceFL.intensity = 0;
+                        isFLOn = !isFLOn;
+                    }
+                    else
+                    {
+                        lightSourceFL.intensity = FLIntensity;
+                        isFLOn = !isFLOn;
+                    }
+                }
+            }
             interactCheck();
         }
         else
         {
-            if (isCursorLocked)
+            if (isCursorLocked && needUnlock)
             {
                 cursorUnlock();
             }
@@ -133,7 +175,13 @@ public class playerCam : MonoBehaviour
                     Debug.Log(currentObj.name);
                     if (interactable.interactable)
                     {
-                        displayInteractionUI(currentObj.GetComponent<MeshRenderer>().bounds.center);
+                        if (currentObj.GetComponent<MeshRenderer>())
+                        {
+                            displayInteractionUI(currentObj.GetComponent<MeshRenderer>().bounds.center);
+                        }else if (currentObj.GetComponent<SpriteRenderer>())
+                        {
+                            displayInteractionUI(currentObj.GetComponent<SpriteRenderer>().bounds.center);
+                        }
                         //ui display
                         //if (!UIDisplayed)
                         //{
@@ -201,9 +249,9 @@ public class playerCam : MonoBehaviour
         Cursor.visible = true;
     }
 
-    public void clockSettingSetTofalse()
+    public void specialInteractingToFalse()
     {
-        settingClock = false;
+        specialInteracting = false;
         cursorLock();
     }
 }

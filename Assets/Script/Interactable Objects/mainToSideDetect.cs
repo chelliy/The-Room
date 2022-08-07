@@ -6,11 +6,16 @@ public class mainToSideDetect : MonoBehaviour
 {
     public Transform door;
 
-    private mainDoor mainDoor;
+    private mainSideConnectedDoor mainDoor;
+
+    public Transform bathRoomDoor;
+
+    private mainDoor bathDoor;
     // Start is called before the first frame update
     void Start()
     {
-        mainDoor = door.GetComponent<mainDoor>();
+        mainDoor = door.GetComponent<mainSideConnectedDoor>();
+        bathDoor = bathRoomDoor.GetComponent<mainDoor>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -19,7 +24,8 @@ public class mainToSideDetect : MonoBehaviour
         if (collision.body.gameObject.CompareTag("player"))
         {
             mainDoor.mainToSide = true;
-            Debug.Log("true");
+            bathDoor.mainToSide = true;
+
         }
     }
 }
