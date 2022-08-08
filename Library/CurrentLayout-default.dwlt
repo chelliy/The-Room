@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: Project
   m_RootView: {fileID: 7}
-  m_MinSize: {x: 875, y: 696}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 467.19995
     height: 451.2
-  m_MinSize: {x: 275, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -98,10 +98,10 @@ MonoBehaviour:
     y: 30
     width: 1536
     height: 722.8
-  m_MinSize: {x: 577, y: 471}
-  m_MaxSize: {x: 12002, y: 14042}
+  m_MinSize: {x: 579, y: 492}
+  m_MaxSize: {x: 12004, y: 14042}
   vertical: 0
-  controlID: 138
+  controlID: 76
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -121,8 +121,8 @@ MonoBehaviour:
     y: 0
     width: 201.6
     height: 451.2
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -250,10 +250,10 @@ MonoBehaviour:
     y: 0
     width: 1536
     height: 722.8
-  m_MinSize: {x: 577, y: 471}
-  m_MaxSize: {x: 12002, y: 14042}
+  m_MinSize: {x: 579, y: 492}
+  m_MaxSize: {x: 12004, y: 14042}
   vertical: 1
-  controlID: 139
+  controlID: 77
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -276,10 +276,10 @@ MonoBehaviour:
     y: 0
     width: 1536
     height: 451.2
-  m_MinSize: {x: 577, y: 200}
-  m_MaxSize: {x: 12002, y: 4021}
+  m_MinSize: {x: 579, y: 221}
+  m_MaxSize: {x: 12004, y: 4021}
   vertical: 0
-  controlID: 140
+  controlID: 78
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -672,22 +672,22 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/AssetsBorrow/Audio
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/AssetsBorrow/Audio
+  - Assets/OldSceneVersion
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\YouQi\summerGameDevelopment\TheRoom\The-Room
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 56600000
-    m_LastClickedID: 24662
-    m_ExpandedIDs: 0000000050560000525600005456000056560000585600005a5600005c56000064560000685600007056000076560000dedb01000eb703001cb703002cb70300
+    scrollPos: {x: 0, y: 31}
+    m_SelectedIDs: e0510000
+    m_LastClickedID: 20960
+    m_ExpandedIDs: 00000000e0510000e2510000e4510000e6510000e8510000ea510000ec510000ee510000f0510000f2510000f4510000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -715,7 +715,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000050560000525600005456000056560000585600005a5600005c560000
+    m_ExpandedIDs: 00000000e0510000e2510000e4510000e6510000e8510000ea510000ec510000ee510000f0510000f2510000f4510000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -743,7 +743,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000203e00002a3e000088110000345a0000865a0000a64a0000c28b0000586500009e8a0000ee5000001c50000000000000
+    m_ExpandedInstanceIDs: c6230000203e00002a3e000088110000345a0000865a0000a64a0000c28b0000586500009e8a0000ee5000001c500000000000006c540000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -801,21 +801,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: a82afeff7e33feff9a36feff9c36feffa636feffea36feff8e38feffbe38feffba39feff726cfeff766dfeff6676feff4077feffa678feffbe79feff087bfeff687ffeffbcd0feffe0d1feff20ecffff34f6fffff850000014510000605100006a51000078510000a2510000c6510000d0510000005200002a5200009e520000de520000e4520000e8520000ee5200000653000018530000325300004053000082530000c653000030540000405400006c540000aa540000265500002c550000525500006055000090550000480e0200b40f0200621002009210020064110200b811020014120200820103004c0d0300640d03008a200300bc22030046240300f031030022340300ac350300384e0300e04e0300244f0300be4f0300b4500300e850030012510300605103000a5203002c5303003a5303006e53030044a4030000a803003caf0300e0bb0300
+      m_ExpandedIDs: 6afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: finalRoom
-        m_OriginalName: finalRoom
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 244704
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 5}
       m_SearchString: 
