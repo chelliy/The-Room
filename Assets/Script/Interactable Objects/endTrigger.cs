@@ -18,6 +18,9 @@ public class endTrigger : MonoBehaviour
 
     public Transform backgroundMusicTrigger;
     private AudioSource endMusic;
+
+    private float playTime = 0f;
+    private float minTime = 5f;
     void Start()
     {
         endMusic = backgroundMusicTrigger.GetComponent<AudioSource>();
@@ -30,7 +33,18 @@ public class endTrigger : MonoBehaviour
         {
             if (!endMusic.isPlaying)
             {
-                SceneManager.LoadScene("StartMenu");
+                if(playTime < minTime)
+                {
+                    playTime = playTime + Time.deltaTime;
+                }
+                else
+                {
+                    SceneManager.LoadScene("StartMenu");
+                }
+            }
+            else
+            {
+                playTime = playTime + Time.deltaTime;
             }
         }
     } 

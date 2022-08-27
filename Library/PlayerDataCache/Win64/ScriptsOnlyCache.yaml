@@ -298,6 +298,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 83
       Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
@@ -1657,4 +1659,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/StartMenu.unity
   - Assets/Scenes/MainGame.unity
-  playerPath: C:/Users/YouQi/summerGameDevelopment/TheRoom/builds/The Room.exe
+  playerPath: C:/Users/YouQi/summerGameDevelopment/TheRoom/builds/Windows/The Room.exe
