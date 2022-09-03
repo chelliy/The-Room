@@ -9,3 +9,5 @@ you can find this game on itch: https://cloudgg.itch.io/the-room123
 Art and Designer: Junting Guo. 
 Programming: Qingzhi You. 
 Soundtrack: Shenze Zhang. 
+
+Plz don't use content in the repo for any commercial purpose 
