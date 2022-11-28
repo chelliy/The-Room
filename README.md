@@ -6,7 +6,7 @@ play through video: https://www.youtube.com/watch?v=YjqWxiUUxMw
 
 you can find this game on itch: https://cloudgg.itch.io/the-room123
 
-Art and Designer: Junting Guo. 
+Art and Design: Junting Guo. 
 Programming: Qingzhi You. 
 Soundtrack: Shenze Zhang. 
 
